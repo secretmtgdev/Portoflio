@@ -1,0 +1,38 @@
+<nav id="header-navigation">
+  <ul>
+    <li data-page-ref="home">Home</li>
+    <li data-page-ref="resume">My Resume</li>
+    <li data-page-ref="projects">Highlighted Projects</li>
+  </ul>
+</nav>
+
+<!-- Navigation css -->
+<style>
+  li:hover {
+    cursor: pointer;
+  }
+</style>
+
+<script defer>
+  (function() {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", bindNavigation);
+    } else {
+      bindNavigation();
+    }
+
+    function bindNavigation() {
+      // bind all li elements
+      let navLinks = document.querySelectorAll("#header-navigation > ul > li");
+      for (let i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener("click", navigate);
+      }
+    }
+
+    function navigate() {
+      let target = document.querySelector("main");
+      let pageReference = this.dataset.pageRef;
+      $(target).load(`./components/${pageReference}/${pageReference}.html`);
+    }
+  })();
+</script>
